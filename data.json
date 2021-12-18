@@ -1,0 +1,65 @@
+[
+  {
+    "mealType": "Breakfast",
+    "mealPhoto": "https://react-projects-5-menu.netlify.app/images/item-1.jpeg",
+    "mealDescription": "I'm baby woke mlkshk wolf bitters live-edge blue bottle, hammock freegan copper mug whatever cold-pressed",
+    "mealName": "Buttermilk Pancakes",
+    "id": 1
+  },
+  {
+    "mealType": "Snakes",
+    "mealPhoto": "https://react-projects-5-menu.netlify.app/images/item-3.jpeg",
+    "mealDescription": "ombucha chillwave fanny pack 3 wolf moon street art photo booth before they sold out organic viral.",
+    "mealName": "Godzilla Milkshake",
+    "id": 2
+  },
+  {
+    "mealType": "Snakes",
+    "mealPhoto": "https://react-projects-5-menu.netlify.app/images/item-6.jpeg",
+    "mealDescription": "Portland chicharrones ethical edison bulb, palo santo craft beer chia heirloom iPhone everyday",
+    "mealName": "Oreo Dream",
+    "id": 3
+  },
+  {
+    "mealType": "Snakes",
+    "mealPhoto": "https://react-projects-5-menu.netlify.app/images/item-9.jpeg",
+    "mealDescription": "skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.",
+    "mealName": "Quarantine Buddy",
+    "id": 4
+  },
+  {
+    "mealType": "Lunch",
+    "mealPhoto": "https://react-projects-5-menu.netlify.app/images/item-2.jpeg",
+    "mealDescription": "vaporware iPhone mumblecore selvage raw denim slow-carb leggings gochujang helvetica man braid jianbing. Marfa thundercats",
+    "mealName": "Diner Double",
+    "id": 5
+  },
+  {
+    "mealType": "Lunch",
+    "mealPhoto": "https://react-projects-5-menu.netlify.app/images/item-5.jpeg",
+    "mealDescription": "franzen vegan pabst bicycle rights kickstarter pinterest meditation farm-to-table 90's pop-up",
+    "mealName": "Egg Attack",
+    "id": 6
+  },
+  {
+    "mealType": "Lunch",
+    "mealPhoto": "https://react-projects-5-menu.netlify.app/images/item-8.jpeg",
+    "mealDescription": "on it tumblr kickstarter thundercats migas everyday carry squid palo santo leggings. Food truck truffaut",
+    "mealName": "American Classic",
+    "id": 7
+  },
+  {
+    "mealType": "Breakfast",
+    "mealPhoto": "https://react-projects-5-menu.netlify.app/images/item-7.jpeg",
+    "mealDescription": "carry jianbing normcore freegan. Viral single-origin coffee live-edge, pork belly cloud bread iceland put a bird",
+    "mealName": "Bacon Overflow",
+    "id": 8
+  },
+  {
+    "mealType": "Breakfast",
+    "mealPhoto": "https://react-projects-5-menu.netlify.app/images/item-4.jpeg",
+    "mealDescription": "Shabby chic keffiyeh neutra snackwave pork belly shoreditch. Prism austin mlkshk truffaut,",
+    "mealName": "Country Delight",
+    "id": 9
+  }
+]
