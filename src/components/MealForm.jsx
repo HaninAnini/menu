@@ -1,7 +1,10 @@
 import useFormState from "./useFormState";
+import {useParams} from "react-router-dom";
 
 
 const MealForm = ({setReFetch}) => {
+
+  const {id} = useParams();
 
   const {
     meal,
@@ -86,7 +89,7 @@ const MealForm = ({setReFetch}) => {
         </div>
 
         <button className={"form-button"} type={"button"} onClick={onClickAddMeal}>
-          Add Meal
+          {id ? "Update " : "Add "}Meal
         </button>
       </form>
     </>

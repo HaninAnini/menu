@@ -1,8 +1,9 @@
 import {useEffect, useRef, useState} from 'react';
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 
 const useFormState = ({setReFetch}) => {
   const {id} = useParams();
+  const navigate = useNavigate();
 
   const [meal, setMeal] = useState({});
 
@@ -52,11 +53,14 @@ const useFormState = ({setReFetch}) => {
       headers: {
         "Content-Type": "application/json"
       },
-      method:"POST",
+      method: id ? "PUT" : "POST",
       body: JSON.stringify(meal)
     }).then(_ => {
       setMeal({mealType: "", mealPhoto: "", mealDescription: "", mealName: "", mealPrice: ""})
       setReFetch(true)
+      if (id) {
+        navigate("/menu")
+      }
     })
 
   }
@@ -72,7 +76,7 @@ const useFormState = ({setReFetch}) => {
 
   return (
     {
-
+      meal,
       mealPriceRef,
       mealNameRef,
       mealDescriptionRef,

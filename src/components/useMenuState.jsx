@@ -1,6 +1,10 @@
 import {useEffect, useState} from 'react';
+import {useNavigate} from "react-router-dom";
 
 export const useMenuState = ({reFetch, setReFetch}) => {
+
+  const navigate = useNavigate();
+
   const [menu, setMenu] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [editingMealId, setEditingMealId] = useState(null);
@@ -51,6 +55,10 @@ export const useMenuState = ({reFetch, setReFetch}) => {
     })
   }
 
+  const updateInForm = (id) => {
+    navigate(`/meal/${id}`);
+  }
+
 
   return (
     {
@@ -62,6 +70,7 @@ export const useMenuState = ({reFetch, setReFetch}) => {
       onClickDelete,
       onClickUpdate,
       afterUpdate,
+      updateInForm,
     }
   );
 };

@@ -15,6 +15,7 @@ const Menu = ({setReFetch, reFetch, setMeal}) => {
     onClickDelete,
     onClickUpdate,
     afterUpdate,
+    updateInForm,
   } = useMenuState({reFetch, setReFetch, setMeal});
 
 
@@ -66,6 +67,9 @@ const Menu = ({setReFetch, reFetch, setMeal}) => {
                         <FaTrashAlt/>
                       </button>
                       <button className={"meal-update-button"} type={"button"} onClick={() => onClickUpdate(id)}>
+                        <AiFillEdit/>
+                      </button>
+                      <button className={"meal-update-button"} type={"button"} onClick={() => updateInForm(id)}>
                         <AiFillEdit/>
                       </button>
                     </div>
