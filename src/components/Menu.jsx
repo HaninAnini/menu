@@ -1,54 +1,80 @@
-import React from 'react';
 import {useMenuState} from "./useMenuState";
 import {FaTrashAlt} from "react-icons/fa";
 import {AiFillEdit} from "react-icons/ai";
-import {useNavigate} from "react-router-dom";
+import Loader from 'react-loader'
+import UpdateMeal from "./UpdateMeal";
 
-const Menu = ({setReFetch, reFetch}) => {
-  const navigate = useNavigate();
-  const {menu, filteringButtons, filter, onClickDelete} = useMenuState(reFetch, setReFetch);
 
-  const onClickUpdate = (mealId) => {
-    navigate(`/meal/${mealId}`);
+const Menu = ({setReFetch, reFetch, setMeal}) => {
+  const {
+    menu,
+    filteringButtons,
+    editingMealId,
+    isLoading,
+    filter,
+    onClickDelete,
+    onClickUpdate,
+    afterUpdate,
+  } = useMenuState({reFetch, setReFetch, setMeal});
+
+
+  if (isLoading) {
+    return (
+      <div>
+        <Loader className="text-center"
+                type="radio"
+                color="#00BFFF"
+                height={100}
+                width={100}
+                timeout={3000} //3 secs
+        />
+      </div>
+    )
   }
 
   return (
-    <div>
-      <nav className={"row mb-3"}>
+    <div className={"menu"}>
+      <h1 className={"menu-title"}>Your Menu</h1>
+      <nav className={"filter-button-group"}>
         {
-          filteringButtons.map(buttonText => (
-            <button className={"col-sm btn btn-outline-success me-2"}
+          filteringButtons.map(mealType => (
+            <button className={"filter-button "}
                     type={"button"}
-                    onClick={() => filter(buttonText)}
-                    key={buttonText}
+                    onClick={() => filter(mealType)}
+                    key={mealType}
             >
-              {buttonText}
+              {mealType}
             </button>
           ))
         }
       </nav>
-      <article className={"row mt-5"}>
+
+      <article className={"meals-list"}>
         {menu.map(meal => {
           const {mealPrice, id, mealName, mealPhoto, mealDescription} = meal
           return (
-            <main id={'demo'} className={"col-sm-6 d-flex"} key={id}>
-              <img className={"rounded flex-column w-50 h-auto me-2 mb-5"} src={mealPhoto} alt={""}/>
-              <section className={"flex-column"}>
-                <div className={"row"}>
-                  <h4 className={"col-sm-10"}>{mealName}</h4>
-                  <button className={"col-sm-1 btn border-0  text-dark"} onClick={() => onClickDelete(id)}>
-                    <FaTrashAlt/>
-                  </button>
-                  <button className={"col-sm-1 btn border-0  text-dark"} type={"button"}
-                          onClick={() => onClickUpdate(id)}>
-                    <AiFillEdit/>
-                  </button>
-                </div>
-                <h5 className={"row"}>{mealPrice}</h5>
-                <hr/>
-                <p className={"flex-row"}>{mealDescription}</p>
-              </section>
-            </main>
+            <div className={"meal"} key={id}>
+              {editingMealId === id ?
+                <UpdateMeal editedMeal={meal} afterUpdate={afterUpdate}/>
+                :
+                <div>
+                  <img className={"meal-image"} src={mealPhoto} alt={""}/>
+                  <section>
+                    <div className={"meal-title"}>
+                      <h2 className={"meal-name"}>{mealName}</h2>
+                      <button className={"meal-delete-button"} onClick={() => onClickDelete(id)}>
+                        <FaTrashAlt/>
+                      </button>
+                      <button className={"meal-update-button"} type={"button"} onClick={() => onClickUpdate(id)}>
+                        <AiFillEdit/>
+                      </button>
+                    </div>
+                    <h4 className={"meal-price"}>{`${mealPrice} $`}</h4>
+                    <hr/>
+                    <p className={"meal-description"}>{mealDescription}</p>
+                  </section>
+                </div>}
+            </div>
           )
         })}
       </article>

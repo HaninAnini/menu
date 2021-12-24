@@ -1,10 +1,7 @@
-import React from "react";
 import useFormState from "./useFormState";
-import {useParams} from "react-router-dom";
 
 
 const MealForm = ({setReFetch}) => {
-  const {mealId} = useParams();
 
   const {
     meal,
@@ -14,16 +11,17 @@ const MealForm = ({setReFetch}) => {
     mealNameRef,
     mealDescriptionRef,
     onChangeInput,
-    onClickButton
-  } = useFormState(setReFetch)
+    onClickAddMeal
+  } = useFormState({setReFetch})
 
   return (
     <>
-      <form className={" container w-50"}>
-        <div>
+      <form className={"form"}>
+        <div className={"form-Field"}>
           <label className={"form-label"} htmlFor={"mealPhoto"}>Meal Photo link:</label>
+          <br/>
           <input
-            className={"form-control"}
+            className={"form-input"}
             ref={mealPhotoRef}
             name="mealPhoto"
             type="text"
@@ -31,10 +29,12 @@ const MealForm = ({setReFetch}) => {
             value={meal?.mealPhoto}
             onChange={onChangeInput}/>
         </div>
-        <div>
+
+        <div className={"form-Field"}>
           <label className={"form-label"} htmlFor={"mealName"}>Name:</label>
+          <br/>
           <input
-            className={"form-control"}
+            className={"form-input"}
             ref={mealNameRef}
             name="mealName"
             type="text"
@@ -42,27 +42,28 @@ const MealForm = ({setReFetch}) => {
             value={meal?.mealName}
             onChange={onChangeInput}/>
         </div>
-        <div>
+
+        <div className={"form-Field"}>
           <label className={"form-label"} htmlFor={"mealType"}>Type:</label>
-          <input
-            className={"form-control"}
+          <br/>
+          <select
+            className={"form-input"}
             ref={mealTypeRef}
             name="mealType"
-            list={"type"}
             id={"mealType"}
             value={meal?.mealType}
-            onChange={onChangeInput}/>
-          <datalist id={"type"}>
-            <option value={"Breakfast"}/>
-            <option value={"Lunch"}/>
-            <option value={"Shakes"}/>
-          </datalist>
+            onChange={onChangeInput}>
+            <option value={"Breakfast"}>Breakfast</option>
+            <option value={"Lunch"}>Lunch</option>
+            <option value={"Shakes"}>Shakes</option>
+          </select>
         </div>
 
-        <div>
+        <div className={"form-Field"}>
           <label className={"form-label"} htmlFor={"mealPrice"}> Price: </label>
+          <br/>
           <input
-            className={"form-control"}
+            className={"form-input"}
             ref={mealPriceRef}
             name="mealPrice"
             type="text"
@@ -71,10 +72,11 @@ const MealForm = ({setReFetch}) => {
             onChange={onChangeInput}/>
         </div>
 
-        <div>
+        <div className={"form-Field"}>
           <label className={"form-label"} htmlFor={"mealDescription"}> Description: </label>
+          <br/>
           <input
-            className={"form-control"}
+            className={"form-input"}
             ref={mealDescriptionRef}
             name="mealDescription"
             type="text"
@@ -83,8 +85,8 @@ const MealForm = ({setReFetch}) => {
             onChange={onChangeInput}/>
         </div>
 
-        <button className={"btn btn-outline-primary mt-3 mb-3"} type={"button"} onClick={onClickButton}>
-          {mealId ? "Update" : "Add"} Meal
+        <button className={"form-button"} type={"button"} onClick={onClickAddMeal}>
+          Add Meal
         </button>
       </form>
     </>

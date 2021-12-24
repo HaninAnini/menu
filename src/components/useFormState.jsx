@@ -1,15 +1,17 @@
-import React, {useEffect, useRef, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {useParams} from "react-router-dom";
 
-const useFormState = (setReFetch) => {
-  const {mealId} = useParams();
+const useFormState = ({setReFetch}) => {
+  const {id} = useParams();
 
-  const [meal, setMeal] = useState({mealType: "", mealPhoto: "", mealDescription: "", mealName: "", mealPrice: ""});
+  const [meal, setMeal] = useState({});
+
   const mealTypeRef = useRef(null)
   const mealPhotoRef = useRef(null)
   const mealNameRef = useRef(null)
   const mealPriceRef = useRef(null)
   const mealDescriptionRef = useRef(null)
+
 
   const onChangeInput = (e) => {
     const name = e.target.name;
@@ -17,7 +19,7 @@ const useFormState = (setReFetch) => {
     setMeal({...meal, [name]: value})
   }
 
-  const onClickButton = (e) => {
+  const onClickAddMeal = (e) => {
     e.preventDefault();
     if (meal?.mealName === "") {
       mealNameRef.current.focus()
@@ -42,40 +44,41 @@ const useFormState = (setReFetch) => {
 
 
     let url = 'http://localhost/meals';
-    if (mealId) {
-      url += `/${mealId}`;
+    if (id) {
+      url += `/${id}`;
     }
 
     fetch(url, {
       headers: {
         "Content-Type": "application/json"
       },
-      method: mealId ? "PUT" : "POST",
+      method:"POST",
       body: JSON.stringify(meal)
     }).then(_ => {
       setMeal({mealType: "", mealPhoto: "", mealDescription: "", mealName: "", mealPrice: ""})
       setReFetch(true)
     })
+
   }
 
   useEffect(() => {
-    if (mealId) {
-      fetch(`http://localhost/meals/${mealId}`)
+    if (id) {
+      fetch(`http://localhost/meals/${id}`)
         .then(response => response.json())
         .then(meal => setMeal(meal));
     }
-  }, [mealId])
+  }, [id])
 
 
   return (
     {
-      meal,
+
       mealPriceRef,
       mealNameRef,
       mealDescriptionRef,
       mealTypeRef,
       mealPhotoRef,
-      onClickButton,
+      onClickAddMeal,
       onChangeInput,
     }
   );
