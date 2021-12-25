@@ -1,10 +1,12 @@
-import {useEffect, useRef, useState} from 'react';
+import {useContext, useEffect, useRef, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
+import {UserContext} from "../App";
 
-const useFormState = ({setReFetch}) => {
+const useFormState = () => {
+
+  const {setReFetch} = useContext(UserContext);
   const {id} = useParams();
   const navigate = useNavigate();
-
   const [meal, setMeal] = useState({});
 
   const mealTypeRef = useRef(null)
@@ -22,23 +24,23 @@ const useFormState = ({setReFetch}) => {
 
   const onClickAddMeal = (e) => {
     e.preventDefault();
-    if (meal?.mealName === "") {
+    if (!meal?.mealName) {
       mealNameRef.current.focus()
       return;
     }
-    if (meal?.mealType === "") {
+    if (!meal?.mealType) {
       mealTypeRef.current.focus()
       return;
     }
-    if (meal?.mealPhoto === "") {
+    if (!meal?.mealPhoto) {
       mealPhotoRef.current.focus()
       return;
     }
-    if (meal?.mealDescription === "") {
+    if (!meal?.mealDescription) {
       mealDescriptionRef.current.focus()
       return;
     }
-    if (meal?.mealPrice === "") {
+    if (!meal?.mealPrice) {
       mealPriceRef.current.focus()
       return;
     }
@@ -57,10 +59,8 @@ const useFormState = ({setReFetch}) => {
       body: JSON.stringify(meal)
     }).then(_ => {
       setMeal({mealType: "", mealPhoto: "", mealDescription: "", mealName: "", mealPrice: ""})
-      setReFetch(true)
-      if (id) {
-        navigate("/menu")
-      }
+      setReFetch(true);
+      navigate("/menu");
     })
 
   }

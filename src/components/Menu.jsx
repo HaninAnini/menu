@@ -5,7 +5,7 @@ import Loader from 'react-loader'
 import UpdateMeal from "./UpdateMeal";
 
 
-const Menu = ({setReFetch, reFetch, setMeal}) => {
+const Menu = () => {
   const {
     menu,
     filteringButtons,
@@ -16,7 +16,7 @@ const Menu = ({setReFetch, reFetch, setMeal}) => {
     onClickUpdate,
     afterUpdate,
     updateInForm,
-  } = useMenuState({reFetch, setReFetch, setMeal});
+  } = useMenuState();
 
 
   if (isLoading) {
@@ -54,15 +54,16 @@ const Menu = ({setReFetch, reFetch, setMeal}) => {
         {menu.map(meal => {
           const {mealPrice, id, mealName, mealPhoto, mealDescription} = meal
           return (
-            <div className={"meal"} key={id}>
+            <div className={"place"} key={id}>
               {editingMealId === id ?
                 <UpdateMeal editedMeal={meal} afterUpdate={afterUpdate}/>
                 :
-                <div>
+                <div className={"meal"}>
                   <img className={"meal-image"} src={mealPhoto} alt={""}/>
                   <section>
                     <div className={"meal-title"}>
                       <h2 className={"meal-name"}>{mealName}</h2>
+                      <div className={"meal-buttons"}>
                       <button className={"meal-delete-button"} onClick={() => onClickDelete(id)}>
                         <FaTrashAlt/>
                       </button>
@@ -72,6 +73,7 @@ const Menu = ({setReFetch, reFetch, setMeal}) => {
                       <button className={"meal-update-button"} type={"button"} onClick={() => updateInForm(id)}>
                         <AiFillEdit/>
                       </button>
+                      </div>
                     </div>
                     <h4 className={"meal-price"}>{`${mealPrice} $`}</h4>
                     <hr/>

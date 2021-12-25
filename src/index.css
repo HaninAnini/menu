@@ -110,12 +110,12 @@
 .meal {
     display: flex;
     flex-direction: row;
-    gap: .5rem;
+    gap: .3rem;
 }
 
 .meal-image {
     min-width: 200px;
-    max-height: 150px;
+    height: 150px;
     border-radius: .2rem;
     border: solid cadetblue 5px;
 }
@@ -130,7 +130,7 @@
 
     font-weight: 100;
     font-family: 'Bebas Neue', cursive;
-    flex-grow: 10;
+    flex-grow: 9;
 }
 
 .meal-update-button {
@@ -401,5 +401,9 @@
     }
 }
 
-
+.meal-buttons{
+    display: flex;
+    flex-direction: row;
+    gap: .7rem;
+}
 

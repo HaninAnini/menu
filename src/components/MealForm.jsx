@@ -2,7 +2,7 @@ import useFormState from "./useFormState";
 import {useParams} from "react-router-dom";
 
 
-const MealForm = ({setReFetch}) => {
+const MealForm = () => {
 
   const {id} = useParams();
 
@@ -15,7 +15,7 @@ const MealForm = ({setReFetch}) => {
     mealDescriptionRef,
     onChangeInput,
     onClickAddMeal
-  } = useFormState({setReFetch})
+  } = useFormState()
 
   return (
     <>

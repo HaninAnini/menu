@@ -1,8 +1,9 @@
-import {useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
+import {UserContext} from "../App";
 
-export const useMenuState = ({reFetch, setReFetch}) => {
-
+export const useMenuState = () => {
+  const {setReFetch, reFetch} = useContext(UserContext)
   const navigate = useNavigate();
 
   const [menu, setMenu] = useState([])
@@ -20,7 +21,7 @@ export const useMenuState = ({reFetch, setReFetch}) => {
   }
 
   useEffect(() => {
-    if (reFetch) {
+    if (reFetch || menu?.length === 0) {
       fetch('http://localhost/meals')
         .then(response => response.json())
         .then(data => {
@@ -29,7 +30,7 @@ export const useMenuState = ({reFetch, setReFetch}) => {
           setReFetch(false);
         })
     }
-  }, [reFetch])
+  }, [reFetch, menu?.length]);
 
   const filter = (mealType) => {
     let url = "http://localhost/meals";
